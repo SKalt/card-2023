@@ -4,6 +4,8 @@
   import cats from "$lib/assets/cats-3.jpg?enhanced";
   import wedding from "$lib/assets/wedding-2.jpg?enhanced";
   let container: HTMLElement;
+  let hintLeft: HTMLElement;
+  let hintRight: HTMLElement;
   const toggleDrag = (e: MouseEvent) => {
     e.preventDefault();
     dragging = !dragging;
@@ -13,6 +15,13 @@
     console.log(e.movementX);
     if (!dragging) return;
     container.scrollLeft -= e.movementX; // reverse direction
+  };
+  const handleScroll = (e: MouseEvent) => {
+    if (container.scrollLeft > 0) {
+      hintLeft.style.display = "none";
+    } else {
+      hintLeft.style.display = "inline-block";
+    }
   };
   let dragging = false;
 </script>
@@ -41,7 +50,8 @@
   <a class="next" href="#move">↓</a>
 </section>
 <section id="move" bind:this={container}>
-  <h2>We moved to Philadelphia →</h2>
+  <h2>We moved to Philadelphia</h2>
+  <!-- <span class="scroll-hint l">←</span> -->
   <enhanced:img
     src={panorama}
     class="panorama"
@@ -58,6 +68,8 @@
     on:mouseup={toggleDrag}
     on:mousemove={handleDrag}
   />
+
+  <span class="scroll-hint r" bind:this={hintRight}>→</span>
   <a class="next" href="#conclusion">↓</a>
 </section>
 <section id="conclusion" class="page">
@@ -156,7 +168,24 @@
     font-size: xx-large;
     text-align: center;
   }
-
+  .scroll-hint {
+    font-size: xx-large;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 100%;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    text-align: center;
+  }
+  .scroll-hint.r {
+    position: absolute;
+    right: 1rem;
+    pointer-events: none;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.5);
+  }
   section h2,
   section h3 {
     position: absolute;
