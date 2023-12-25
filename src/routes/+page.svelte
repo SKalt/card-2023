@@ -23,7 +23,7 @@
   <div class="snow snow-fg"></div>
 </div>
 <section id="intro-1" class="page">
-  <h1>Happy holidays and happy new year!</h1>
+  <h1>Happy Holidays and Happy New Year!</h1>
   <a class="next" href="#intro-2">↓</a>
 </section>
 <section id="intro-2" class="page">
@@ -168,12 +168,16 @@
   section h3 {
     top: 5rem;
   }
-  #intro-1 {
+  /* the elements that should have snow on them must have z=0 */
+  #intro-1,
+  #intro-2,
+  #conclusion {
     z-index: 0;
+  }
+  #intro-1 {
     background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   }
   #intro-2 {
-    z-index: 0;
     background: radial-gradient(ellipse at top, #1b2735 0%, #090a0f 100%);
   }
   .wedding {
@@ -211,6 +215,9 @@
   }
   .panorama.flipped {
     transform: scaleX(-1);
+  }
+  #conclusion {
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   }
   #cats {
     height: fit-content;
