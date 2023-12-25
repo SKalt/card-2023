@@ -7,8 +7,11 @@ cd ./dist
 git add .
 git commit -m "chore: deploy"
 git push
-cd ../../card/2023/
+cd ..
+git commit -m "chore: deploy"
+cd ../card/2023/
 git pull
 cd ../
 git add -u
 git commit -m "chore: deploy 2023"
+git push
